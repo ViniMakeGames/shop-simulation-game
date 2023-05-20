@@ -7,30 +7,21 @@ public class InteractionController : MonoBehaviour
 {
     [SerializeField] private string[] _layers;
     private LayerMask _layerMask;
-    private Vector2 _aimDirection;
+    private Vector2 _aimAxis;
 
     private void Awake()
     {
         _layerMask = LayerMask.GetMask(_layers);
     }
 
-    private void Update()
+    public void ChangeAimAxis(Vector2 aimAxis)
     {
-        var aim = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        
-        if (aim.magnitude > 0)
-        {
-            _aimDirection = aim;
-        }
-
-        if (!Input.GetButtonDown("Fire1")) return;
-        
-        Interact();
+        _aimAxis = aimAxis;
     }
-
-    private void Interact()
+    
+    public void Interact()
     {
-        var raycastHits = Physics2D.RaycastAll(transform.position, _aimDirection, 1f, _layerMask);
+        var raycastHits = Physics2D.RaycastAll(transform.position, _aimAxis, 1f, _layerMask);
         
         if (raycastHits.Length == 0) return;
 
@@ -42,6 +33,6 @@ public class InteractionController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Debug.DrawRay(transform.position, _aimDirection, Color.red);
+        Debug.DrawRay(transform.position, _aimAxis, Color.red);
     }
 }
