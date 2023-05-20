@@ -9,9 +9,12 @@ namespace PlayerComponents
         private LayerMask _layerMask;
         private Vector2 _aimAxis;
 
+        private InputController _inputController;
+
         private void Awake()
         {
             _layerMask = LayerMask.GetMask(_layers);
+            _inputController = GetComponent<InputController>();
         }
 
         public void ChangeAimAxis(Vector2 aimAxis)
@@ -30,6 +33,8 @@ namespace PlayerComponents
                 raycastHits[0].transform.GetComponent<NpcControllerBase>().Interact(this);
             }
         }
+
+        public void EnableMovement(bool enable) => _inputController.EnableMovement(enable);
 
         private void OnDrawGizmos()
         {

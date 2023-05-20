@@ -4,6 +4,8 @@ namespace PlayerComponents
 {
     public class InputController : MonoBehaviour
     {
+        private bool _movementEnabled = true;
+
         [SerializeField] private string _movementAxisX;
         [SerializeField] private string _movementAxisY;
         [SerializeField] private string _interactionInput;
@@ -27,6 +29,8 @@ namespace PlayerComponents
 
         private void Movement()
         {
+            if (!_movementEnabled) return;
+            
             _inputAxis = new Vector2(Input.GetAxis(_movementAxisX), Input.GetAxis(_movementAxisY));
 
             if (_inputAxis.magnitude == 0) return;
@@ -43,5 +47,7 @@ namespace PlayerComponents
         
             _interaction.Interact();
         }
+
+        public void EnableMovement(bool enable) => _movementEnabled = enable;
     }
 }

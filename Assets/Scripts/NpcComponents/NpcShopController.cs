@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace NpcComponents
 {
-    public class NpcControllerShopController : NpcControllerBase
+    public class NpcShopController : NpcControllerBase
     {
         public override void Interact(InteractionController interactionController)
         {
