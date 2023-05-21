@@ -10,6 +10,8 @@ namespace NpcComponents
     {
         [SerializeField] private ItemData[] _shopList;
         private ShopUI _shopUI;
+
+        private InteractionController _cachedInteractionController;
         
         public override void Awake()
         {
@@ -19,6 +21,7 @@ namespace NpcComponents
 
         public override void DisplayDialogue(InteractionController interactionController)
         {
+            _cachedInteractionController = interactionController;
             if (dialogue.Length > 0)
             {
                 base.DisplayDialogue(interactionController);
@@ -42,13 +45,14 @@ namespace NpcComponents
         private void DisplayShop()
         {
             interacting = true;
-            _shopUI.DisplayUI(_shopList);
+            _shopUI.UpdateUI(_shopList);
             _shopUI.onWindowClose.AddListener(DisableInteraction);
         }
 
         private void DisableInteraction()
         {
             interacting = false;
+            _cachedInteractionController.EnableMovement(true);
             _shopUI.onWindowClose.RemoveListener(DisableInteraction);
         }
     }
