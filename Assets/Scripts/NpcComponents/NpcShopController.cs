@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Data;
 using PlayerComponents;
 using UI;
+using UI.Shop;
 using UnityEngine;
 
 namespace NpcComponents

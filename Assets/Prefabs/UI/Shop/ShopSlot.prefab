@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 553155396510321372}
   - component: {fileID: 553155396510321373}
   m_Layer: 5
-  m_Name: Price
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 2838353926367953487}
   - component: {fileID: 2624925152148707470}
   m_Layer: 5
-  m_Name: Slot (0)
+  m_Name: ShopSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,9 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac9e6b65aa03e94893be6631b1b6571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 553155398276220757}
-  _priceText: {fileID: 553155396510321373}
-  _slotIndex: 0
+  image: {fileID: 553155398276220757}
+  slotIndex: 0
+  priceText: {fileID: 553155396510321373}
 --- !u!114 &2624925152148707470
 MonoBehaviour:
   m_ObjectHideFlags: 0

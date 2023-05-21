@@ -30,7 +30,7 @@ public class InventoryController : MonoBehaviour
     {
         var itemData = items[index];
 
-        if (equippedItems.Contains(itemData))
+        if (HasItemEquipped(itemData))
         {
             equippedItems.Remove(itemData);
             onEquipmentChanged?.Invoke();
@@ -39,7 +39,7 @@ public class InventoryController : MonoBehaviour
         
         for (var i = 0; i < equippedItems.Count; i++)
         {
-            if (equippedItems[i].type != items[i].type) continue;
+            if (equippedItems[i].type != itemData.type) continue;
             
             equippedItems.RemoveAt(i);
             break;
@@ -52,6 +52,8 @@ public class InventoryController : MonoBehaviour
     public bool HasItem(ItemData item) => items.Contains(item);
 
     public bool HasMoney(int amount) => money >= amount;
+
+    public bool HasItemEquipped(ItemData item) => equippedItems.Contains(item);
 
     public void ChangeMoney(int amount)
     {

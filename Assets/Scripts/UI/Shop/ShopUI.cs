@@ -1,9 +1,8 @@
-using System;
 using Data;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace UI
+namespace UI.Shop
 {
     public class ShopUI : MonoBehaviour
     {
