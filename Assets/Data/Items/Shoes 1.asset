@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eba5f504881e4c4ea4d3e487148b222, type: 3}
+  m_Name: Shoes 1
+  m_EditorClassIdentifier: 
+  price: 5
+  icon: {fileID: -1029956602, guid: a5cd354a55eb0b94f8f13b7aa0065b50, type: 3}
+  color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
+  type: 4
+  visual: {fileID: 11400000, guid: 05bf679990be04e40b1fee569f816aab, type: 2}
