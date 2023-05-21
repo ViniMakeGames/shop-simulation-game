@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1477ced9a24ce6468fd8ed062dc7130, type: 3}
+  m_Name: Glasses
+  m_EditorClassIdentifier: 
+  up:
+  - {fileID: 1912567993, guid: 0a51c3be2693a64418b17b5a0d2ebbba, type: 3}
+  - {fileID: 1912567993, guid: 0a51c3be2693a64418b17b5a0d2ebbba, type: 3}
+  - {fileID: 1912567993, guid: 0a51c3be2693a64418b17b5a0d2ebbba, type: 3}
+  - {fileID: 1912567993, guid: 0a51c3be2693a64418b17b5a0d2ebbba, type: 3}
+  right:
+  - {fileID: -375327149, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: 1329977790, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: -375327149, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: -1828854192, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  down:
+  - {fileID: 550803996, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: -303008884, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: 550803996, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: 1612874047, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  left:
+  - {fileID: -980946540, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: -1604160497, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: -980946540, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}
+  - {fileID: -2131079657, guid: 61d57bb9ea811724aad3203995a70ebb, type: 3}

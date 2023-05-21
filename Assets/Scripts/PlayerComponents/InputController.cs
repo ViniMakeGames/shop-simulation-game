@@ -1,3 +1,5 @@
+using TMPro.EditorUtilities;
+using UI.Inventory;
 using UnityEngine;
 
 namespace PlayerComponents
@@ -5,13 +7,17 @@ namespace PlayerComponents
     public class InputController : MonoBehaviour
     {
         private bool _movementEnabled = true;
+        private bool _interactionEnabled = true;
 
         [SerializeField] private string _movementAxisX;
         [SerializeField] private string _movementAxisY;
         [SerializeField] private string _interactionInput;
+        [SerializeField] private KeyCode _inventoryKey;
     
         private MovementController _movement;
         private InteractionController _interaction;
+        private CharacterVisualController _visualController;
+        private InventoryUI _inventoryUI;
 
         private Vector2 _inputAxis;
 
@@ -19,12 +25,14 @@ namespace PlayerComponents
         {
             _movement = GetComponent<MovementController>();
             _interaction = GetComponent<InteractionController>();
+            _visualController = transform.GetChild(0).GetComponent<CharacterVisualController>();
         }
 
         private void Update()
         {
             Movement();
             Interaction();
+            Menus();
         }
 
         private void Movement()
@@ -33,8 +41,14 @@ namespace PlayerComponents
             
             _inputAxis = new Vector2(Input.GetAxis(_movementAxisX), Input.GetAxis(_movementAxisY));
 
-            if (_inputAxis.magnitude == 0) return;
+            if (_inputAxis.magnitude == 0)
+            {
+                _visualController.SetAnimation(0, false);
+                return;
+            }
 
+            _visualController.SetAnimation(_inputAxis.magnitude > 0);
+            _visualController.SetAnimationDirection(_inputAxis.y > 0 ? 0 : _inputAxis.y < 0 ? 2 : _inputAxis.x > 0 ? 1 : 3);
             _inputAxis = _inputAxis.magnitude > 1f ? _inputAxis.normalized : _inputAxis;
         
             _movement.Move(_inputAxis);
@@ -43,11 +57,26 @@ namespace PlayerComponents
 
         private void Interaction()
         {
-            if (!Input.GetButtonDown(_interactionInput)) return;
+            if (!_interactionEnabled || !Input.GetButtonDown(_interactionInput)) return;
         
             _interaction.Interact();
+            _visualController.SetAnimation(0, false);
+        }
+        
+        private void Menus()
+        {
+            if (!Input.GetKeyDown(_inventoryKey)) return;
+            
+            _inventoryUI.gameObject.SetActive(true);
+            EnableMovement(false);
         }
 
-        public void EnableMovement(bool enable) => _movementEnabled = enable;
+        public void EnableMovement(bool enable)
+        {
+            _movementEnabled = enable;
+            _visualController.SetAnimation(0, false);
+        }
+
+        public void EnableInteraction(bool enable) => _interactionEnabled = enable;
     }
 }

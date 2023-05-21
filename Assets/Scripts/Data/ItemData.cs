@@ -9,6 +9,7 @@ namespace Data
         public Sprite icon;
         public Color color = Color.white;
         public ItemType type;
+        public VisualData visual;
     }
 
     public enum ItemType
