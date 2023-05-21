@@ -13,11 +13,13 @@ namespace PlayerComponents
         [SerializeField] private string _movementAxisY;
         [SerializeField] private string _interactionInput;
         [SerializeField] private KeyCode _inventoryKey;
+        [SerializeField] private KeyCode _pauseKey;
     
         private MovementController _movement;
         private InteractionController _interaction;
         private CharacterVisualController _visualController;
         private InventoryUI _inventoryUI;
+        private GameObject _pauseMenu;
 
         private Vector2 _inputAxis;
 
@@ -26,8 +28,9 @@ namespace PlayerComponents
             _movement = GetComponent<MovementController>();
             _interaction = GetComponent<InteractionController>();
             _visualController = transform.GetChild(0).GetComponent<CharacterVisualController>();
+            _pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
             _inventoryUI = GameObject.Find("Canvas").transform.Find("InventoryUI").GetComponent<InventoryUI>();
-            
+
             _inventoryUI.onCloseInventory.AddListener(() => { EnablePlayer(true); });
         }
 
@@ -35,7 +38,8 @@ namespace PlayerComponents
         {
             Movement();
             Interaction();
-            Menus();
+            Inventory();
+            PauseMenu();
         }
 
         private void Movement()
@@ -66,14 +70,22 @@ namespace PlayerComponents
             _visualController.SetAnimation(0, false);
         }
         
-        private void Menus()
+        private void Inventory()
         {
-            if (!Input.GetKeyDown(_inventoryKey)) return;
+            if (!_interactionEnabled || !Input.GetKeyDown(_inventoryKey)) return;
             
             var inventoryGo = _inventoryUI.gameObject;
             
             inventoryGo.SetActive(!inventoryGo.activeSelf);
             EnablePlayer(!inventoryGo.activeSelf);
+        }
+        
+        private void PauseMenu()
+        {
+            if (!_interactionEnabled || !Input.GetKeyDown(_pauseKey)) return;
+
+            _pauseMenu.SetActive(!_pauseMenu.activeSelf);
+            EnablePlayer(!_pauseMenu.activeSelf);
         }
 
         public void EnableMovement(bool enable)
