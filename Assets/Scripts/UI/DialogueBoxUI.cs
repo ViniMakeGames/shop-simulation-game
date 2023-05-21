@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -15,11 +16,11 @@ namespace UI
 
         [SerializeField] private TextMeshProUGUI _textUI;
 
-        public void DisplayText(string text) => DisplayText(new List<string>() { text });
-        public void DisplayText(List<string> text)
+        public void DisplayText(string text) => DisplayText(new string[] { text });
+        public void DisplayText(string[] text)
         {
             gameObject.SetActive(true);
-            _textToDisplay = text;
+            _textToDisplay = text.ToList();
             StartCoroutine(DisplayTextAnimation());
         }
 

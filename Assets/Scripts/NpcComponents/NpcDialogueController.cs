@@ -10,9 +10,9 @@ namespace NpcComponents
     {
         [HideInInspector] public DialogueBoxUI dialogueBox;
 
-        public List<string> dialogue;
+        public string[] dialogue;
 
-        private void Awake()
+        public virtual void Awake()
         {
             dialogueBox = GameObject.Find("Canvas").transform.Find("DialogueBox").GetComponent<DialogueBoxUI>();
         }
@@ -31,7 +31,7 @@ namespace NpcComponents
 
         public virtual void DisplayDialogue(InteractionController interactionController)
         {
-            if (dialogue.Count <= 0) return;
+            if (dialogue.Length <= 0) return;
             
             interactionController.EnableMovement(false);
             dialogueBox.DisplayText(dialogue);
