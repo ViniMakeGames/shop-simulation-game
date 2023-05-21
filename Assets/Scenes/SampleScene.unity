@@ -2232,6 +2232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fffcfb863ac33c46a0b019f12c956af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogue:
+  - Hello!
+  - How are you my friend?
+  - This is a test of a long text dialogue box!
 --- !u!1001 &1433350490
 PrefabInstance:
   m_ObjectHideFlags: 0

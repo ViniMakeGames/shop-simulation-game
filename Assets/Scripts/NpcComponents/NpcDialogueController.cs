@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PlayerComponents;
 using UI;
 using UnityEngine;
@@ -7,27 +8,40 @@ namespace NpcComponents
 {
     public class NpcDialogueController : NpcControllerBase
     {
-        private DialogueBoxUI _dialogueBox;
-        private bool _interacting;
-        
+        [HideInInspector] public DialogueBoxUI dialogueBox;
+
+        public List<string> dialogue;
+
         private void Awake()
         {
-            _dialogueBox = GameObject.Find("Canvas").transform.Find("DialogueBox").GetComponent<DialogueBoxUI>();
+            dialogueBox = GameObject.Find("Canvas").transform.Find("DialogueBox").GetComponent<DialogueBoxUI>();
         }
 
         public override void Interact(InteractionController interactionController)
         {
-            if (!_interacting)
+            if (!interacting)
             {
-                interactionController.EnableMovement(false);
-                _dialogueBox.DisplayText("Hello! How are you my friend?");
-                _interacting = true;
+                DisplayDialogue(interactionController);
             }
             else
             {
-                _interacting = _dialogueBox.NextDialogue();
-                interactionController.EnableMovement(!_interacting);
+                NextDialogue(interactionController);
             }
+        }
+
+        public virtual void DisplayDialogue(InteractionController interactionController)
+        {
+            if (dialogue.Count <= 0) return;
+            
+            interactionController.EnableMovement(false);
+            dialogueBox.DisplayText(dialogue);
+            interacting = true;
+        }
+
+        public virtual void NextDialogue(InteractionController interactionController)
+        {
+            interacting = dialogueBox.NextDialogue();
+            interactionController.EnableMovement(!interacting);
         }
     }
 }
