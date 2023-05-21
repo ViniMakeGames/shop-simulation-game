@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PlayerComponents;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace NpcComponents
 {
@@ -42,6 +43,14 @@ namespace NpcComponents
         {
             interacting = dialogueBox.NextDialogue();
             interactionController.EnableMovement(!interacting);
+
+            if (!interacting)
+            {
+                onConversationEnd?.Invoke();
+            }
         }
+
+        [Header("Events")]
+        public UnityEvent onConversationEnd;
     }
 }
