@@ -1,44 +1,46 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class MoneyUI : MonoBehaviour
+namespace UI
 {
-    private InventoryController _inventory;
-    private void Awake()
+    public class MoneyUI : MonoBehaviour
     {
-        _inventory = GameObject.Find("Player").GetComponent<InventoryController>();
-        _inventory.onMoneyChanged.AddListener(UpdateUI);
-
-        _currentAmount = _inventory.money;
-        _textAmount.text = _inventory.money.ToString();
-    }
-
-    [SerializeField] private TextMeshProUGUI _textAmount;
-    [SerializeField] private int _currentAmount;
-    [SerializeField] private float _animationSpeed;
-    
-    private void UpdateUI()
-    {
-        StopAllCoroutines();
-        StartCoroutine(UpdateMoneyAmount());
-    }
-
-    private IEnumerator UpdateMoneyAmount()
-    {
-        while (_currentAmount != _inventory.money)
+        private InventoryController _inventory;
+        private void Awake()
         {
-            var t = 0f;
-            while (t < 1f)
+            _inventory = GameObject.Find("Player").GetComponent<InventoryController>();
+            _inventory.onMoneyChanged.AddListener(UpdateUI);
+
+            _currentAmount = _inventory.money;
+            _textAmount.text = _inventory.money.ToString();
+        }
+
+        [SerializeField] private TextMeshProUGUI _textAmount;
+        [SerializeField] private int _currentAmount;
+        [SerializeField] private float _animationSpeed;
+    
+        private void UpdateUI()
+        {
+            StopAllCoroutines();
+            StartCoroutine(UpdateMoneyAmount());
+        }
+
+        private IEnumerator UpdateMoneyAmount()
+        {
+            while (_currentAmount != _inventory.money)
             {
-                t += _animationSpeed * Time.deltaTime;
+                var t = 0f;
+                while (t < 1f)
+                {
+                    t += _animationSpeed * Time.deltaTime;
+                    yield return null;
+                }
+
+                _currentAmount += _currentAmount < _inventory.money ? 1 : -1;
+                _textAmount.text = _currentAmount.ToString();
                 yield return null;
             }
-
-            _currentAmount += _currentAmount < _inventory.money ? 1 : -1;
-            _textAmount.text = _currentAmount.ToString();
-            yield return null;
         }
     }
 }
