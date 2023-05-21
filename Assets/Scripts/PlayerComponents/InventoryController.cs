@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 using UnityEngine;
 using UnityEngine.Events;
@@ -54,6 +55,11 @@ public class InventoryController : MonoBehaviour
     public bool HasMoney(int amount) => money >= amount;
 
     public bool HasItemEquipped(ItemData item) => equippedItems.Contains(item);
+
+    public ItemData GetEquippedItemByType(ItemType type)
+    {
+        return equippedItems.FirstOrDefault(item => item.type == type);
+    }
 
     public void ChangeMoney(int amount)
     {

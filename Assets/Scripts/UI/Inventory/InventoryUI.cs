@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI.Inventory
 {
@@ -42,5 +44,13 @@ namespace UI.Inventory
                 _slotUIs[i].DisplayEquippedIcon(_inventoryController.HasItemEquipped(itemData));
             }
         }
+
+        private void OnDisable()
+        {
+            onCloseInventory?.Invoke();
+        }
+
+        [Header("Events")]
+        public UnityEvent onCloseInventory;
     }
 }

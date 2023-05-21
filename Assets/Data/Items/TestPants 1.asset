@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4eba5f504881e4c4ea4d3e487148b222, type: 3}
-  m_Name: TestHat 1
+  m_Name: TestPants 1
   m_EditorClassIdentifier: 
-  price: 10
-  icon: {fileID: 21300000, guid: b6a96c7c65795c94abf54a62adbf5c38, type: 3}
-  color: {r: 0.8596091, g: 0, b: 1, a: 1}
-  type: 0
-  visual: {fileID: 11400000, guid: 4bc9d646728f72540aff30ace3b11b4f, type: 2}
+  price: 5
+  icon: {fileID: 21300000, guid: 61ac40b257b3a994f841856ad38b2b6b, type: 3}
+  color: {r: 0, g: 0.7410011, b: 1, a: 1}
+  type: 3
+  visual: {fileID: 11400000, guid: 79e0a434f598a55468567db61dc4026f, type: 2}

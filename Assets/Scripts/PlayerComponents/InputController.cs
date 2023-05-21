@@ -26,6 +26,9 @@ namespace PlayerComponents
             _movement = GetComponent<MovementController>();
             _interaction = GetComponent<InteractionController>();
             _visualController = transform.GetChild(0).GetComponent<CharacterVisualController>();
+            _inventoryUI = GameObject.Find("Canvas").transform.Find("InventoryUI").GetComponent<InventoryUI>();
+            
+            _inventoryUI.onCloseInventory.AddListener(() => { EnablePlayer(true); });
         }
 
         private void Update()
@@ -67,8 +70,10 @@ namespace PlayerComponents
         {
             if (!Input.GetKeyDown(_inventoryKey)) return;
             
-            _inventoryUI.gameObject.SetActive(true);
-            EnableMovement(false);
+            var inventoryGo = _inventoryUI.gameObject;
+            
+            inventoryGo.SetActive(!inventoryGo.activeSelf);
+            EnablePlayer(!inventoryGo.activeSelf);
         }
 
         public void EnableMovement(bool enable)
@@ -78,5 +83,11 @@ namespace PlayerComponents
         }
 
         public void EnableInteraction(bool enable) => _interactionEnabled = enable;
+
+        public void EnablePlayer(bool enable)
+        {
+            EnableInteraction(enable);
+            EnableMovement(enable);
+        }
     }
 }

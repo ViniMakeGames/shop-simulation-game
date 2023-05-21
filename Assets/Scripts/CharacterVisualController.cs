@@ -102,7 +102,7 @@ public class CharacterVisualController : MonoBehaviour
     public float animationSpeed;
     private int _currentFrame;
     private float _animationTimer;
-    private int _currentDirection;
+    private int _currentDirection = 2;
 
     public void SetAnimationDirection(int direction) => SetAnimation(_currentFrame, direction, playAnimation);
     public void SetAnimation(bool play) => SetAnimation(_currentFrame, play);

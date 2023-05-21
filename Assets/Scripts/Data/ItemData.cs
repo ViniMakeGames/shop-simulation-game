@@ -15,8 +15,9 @@ namespace Data
     public enum ItemType
     {
         Hat,
+        Glasses,
         Top,
-        Bottom,
-        Shoe,
+        Pants,
+        Shoes,
     }
 }
